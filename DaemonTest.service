@@ -1,0 +1,21 @@
+# Place to /etc/systemd/system/
+[Unit]
+Description=DemonizeTest service
+After=network.target
+
+[Service]
+RestartSec=1
+ExecStartPre=/usr/bin/rm -f /run/DaemonTest.pid
+KillMode=process
+PIDFile=/run/DaemonTest.pid
+Restart=always
+TimeoutStopSec=120
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill $MAINPID
+Type=forking
+ExecStart=/PAServer/scratch-dir/Kayfolom-CentOS710.0.0.4/DaemonTest/DaemonTest
+User=root
+
+[Install]
+WantedBy=multi-user.target
+
