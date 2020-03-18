@@ -306,7 +306,7 @@ initialization
 
   QueueSignals := TThreadedQueue<Integer>.Create(10,1000, 100);
   QueueEvent := TQueueEvent.Create(10,1000, 100);
-//  Daemon := TDaemon.Create(QueueSignals, QueueEvent);
+  Daemon := TDaemon.Create(QueueSignals, QueueEvent);
 
 finalization
 
