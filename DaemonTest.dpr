@@ -22,10 +22,10 @@ begin
   syslog(LOG_NOTICE, 'main START');
   while True do
   begin
-//    UnitDaemon.TDaemon.Log(LOG_NOTICE, 'main LOOP');
+    syslog(LOG_NOTICE, 'main LOOP');
     if UnitDaemon.QueueEvent.PopItem(AEventType) = System.SyncObjs.TWaitResult.wrSignaled then
     begin
-      syslog(LOG_NOTICE, 'main UnitDaemon.QueueEvent.PopItem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      syslog(LOG_NOTICE, 'main UnitDaemon.QueueEvent.PopItem');
       case AEventType of
         TEventType.StopProcess :
         begin
