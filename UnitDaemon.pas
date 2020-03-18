@@ -22,18 +22,7 @@ const
   EXIT_SUCCESS = 0;
 
 type
-{
-  TSystemdDataRecords = TDictionary<String, String>;
-  TSystemdData = record
-		// https://www.freedesktop.org/software/systemd/man/systemd.unit.html
-    SectionUnit : TSystemdDataRecords;
-		// https://www.freedesktop.org/software/systemd/man/systemd.service.html
-    SectionService : TSystemdDataRecords;
-    SectionInstall : TSystemdDataRecords;
-    procedure Create;
-    procedure Destroy;
-  end;
-}
+
   TEventType = (
     Start,
     Stop,
@@ -49,7 +38,6 @@ type
     FPID: pid_t;
     FSID: pid_t;
     FFID: Integer;
-//    FIsDaemon : Boolean;
     FQueueEvent : TQueueEvent;
     FQueueSignals : TThreadedQueue<Integer>;
     function WritePIDFile() : boolean;
@@ -59,7 +47,6 @@ type
   protected
     procedure Execute; override;
   public
-//    constructor Create(const QueueSignals : TThreadedQueue<Integer>; const AQueueEvent : TQueueEvent);
     constructor Create();
     destructor Destroy; override;
   end;
@@ -67,12 +54,11 @@ type
 var
   Daemon : TDaemon;
   QueueEvent : TQueueEvent;
-  QueueSignals : TThreadedQueue<Integer>;
 
 implementation
 
-//var
-//  QueueSignals : TThreadedQueue<Integer>;
+var
+  QueueSignals : TThreadedQueue<Integer>;
 
 // 1. If SIGTERM is received, shut down the daemon and exit cleanly.
 // 2. If SIGHUP is received, reload the configuration files, if this applies.
@@ -86,7 +72,6 @@ begin
   end;
 end;
 
-//constructor TDaemon.Create(const QueueSignals : TThreadedQueue<Integer>; const AQueueEvent : TQueueEvent);
 constructor TDaemon.Create();
 begin
   FQueueSignals := QueueSignals;
@@ -99,7 +84,6 @@ begin
   syslog(LOG_NOTICE, '------------------------------------------------------------------');
   syslog(LOG_NOTICE, 'Daemon.Create()');
 
-//  FIsDaemon := False;
   if not Start() then
     inherited Create(True)
   else
@@ -267,7 +251,6 @@ end;
 function TDaemon.WritePIDFile() : boolean;
 begin
   Result := False;
-//  syslog(LOG_NOTICE, 'daemon: try write pid file : ' + FPIDFilePath);
   try
     if DeletePIDFile() then
       TFile.WriteAllText(FPIDFilePath, FPID.ToString + #10);
