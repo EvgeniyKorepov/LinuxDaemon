@@ -56,7 +56,7 @@ begin
         end;
       end;
     end;
-    Sleep(1000);
+    Sleep(50);
   end;
 end.
 ```
