@@ -60,3 +60,10 @@ begin
   end;
 end.
 ```
+
+Place DaemonTest.service to /etc/systemd/system/ and use :
+```
+systemctl start DaemonTest.service
+systemctl reload DaemonTest.service
+systemctl stop DaemonTest.service
+```
