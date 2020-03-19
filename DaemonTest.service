@@ -1,6 +1,6 @@
 # Place to /etc/systemd/system/
 [Unit]
-Description=DemonizeTest service
+Description=DaemonTest service
 After=network.target
 
 [Service]
@@ -13,7 +13,7 @@ TimeoutStopSec=120
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill $MAINPID
 Type=forking
-ExecStart=/PAServer/scratch-dir/Kayfolom-CentOS710.0.0.4/DaemonTest/DaemonTest
+ExecStart=/opt/DaemonTest/DaemonTest
 User=root
 
 [Install]
