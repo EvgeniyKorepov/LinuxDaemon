@@ -1,6 +1,8 @@
 # LinuxDaemon
 Linux Daemon
 
+See also Linux Daemon new style https://github.com/EvgeniyKorepov/LinuxDaemonNewStyle
+
 Example :
 
 ```
